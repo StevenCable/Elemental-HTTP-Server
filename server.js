@@ -6,15 +6,6 @@ const qs = require('querystring');
 const PORT = process.env.PORT || 3000;
 
 
-
-// let resourceMapping = {
-//   '/': 'public/index.html',
-//   '/hydrogen.html': 'public/hydrogen.html',
-//   '/helium.html': 'public/helium.html',
-//   '404.html': 'public/404.html',
-//   '/css/styles.css': 'public/css/styles.css'
-// };
-
 function sendError(resp){
   resp = "Can't find what doesn't exist";
   res.statusCode = 404;
@@ -28,6 +19,10 @@ function sendContent(res, content){
   res.statusCode = 200;
   res.write(content);
   res.end();
+}
+
+function updateHTML(newString){
+
 }
 
 
