@@ -21,7 +21,10 @@ function sendContent(res, content){
   res.end();
 }
 
-function updateHTML(newString){
+//create new html string in index.html
+// when 'element'.html is created
+
+function updateHTML(newString){         
 
 }
 
@@ -41,24 +44,27 @@ const server = http.createServer((req, res) =>{
     }
     console.log("files: ", files);
   });
-    
 
-  req.on('end', () =>{
+  req.on('end', () =>{ 
+  if(req.method === 'POST'){
+    
     fs.writeFile(`./public/${parsedElementData.elementName}.html`,`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>The Elements - ${parsedElementData.elementName}</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <h1>${parsedElementData.elementName}</h1>
-  <h2>H</h2>
-  <h3>Atomic number ${parsedElementData.elementAtomicNumber}</h3>
-  <p>${parsedElementData.elementName} is a chemical element with symbol "${parsedElementData.elementSymbol}" and atomic number ${parsedElementData.elementAtomicNumber}. It is a member of the noble gases and is also Superman's only known weakness, aside form Louis Lane of course.</p>
-  <p><a href="/">back</a></p>
-</body>
-</html>`);
+  }
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>The Elements - ${parsedElementData.elementName}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <h1>${parsedElementData.elementName}</h1>
+    <h2>H</h2>
+    <h3>Atomic number ${parsedElementData.elementAtomicNumber}</h3>
+    <p>${parsedElementData.elementName} is a chemical element with symbol "${parsedElementData.elementSymbol}" and atomic number ${parsedElementData.elementAtomicNumber}. It is a member of the noble gases and is also Superman's only known weakness, aside form Louis Lane of course.</p>
+    <p><a href="/">back</a></p>
+  </body>
+  </html>`);
+  }
 
     fs.readFile(`./public/${req.url}` ||'', (err,content) => {
       if(err){
